@@ -1,0 +1,39 @@
+<section
+  class="h-screen w-screen flex items-center justify-center bg-gray-100 font-display text-gray-800"
+>
+  <div class="w-96 bg-white rounded-md shadow-md p-6 flex flex-col space-y-8">
+    <div class="w-full flex items-center justify-between">
+      <span class="font-medium">{{ currentMonthName }} {{ currentYear }}</span>
+      <div class="flex items-center space-x-4">
+        <button (click)="prevMonth()">
+          <i class="fa-solid fa-chevron-left text-sm text-gray-400"></i>
+        </button>
+        <button (click)="nextMonth()">
+          <i class="fa-solid fa-chevron-right text-sm text-gray-400"></i>
+        </button>
+      </div>
+    </div>
+    <div class="grid grid-cols-7 gap-y-6 text-sm text-gray-600">
+      <div class="flex w-full items-center justify-center font-medium">Mon</div>
+      <div class="flex w-full items-center justify-center font-medium">Tue</div>
+      <div class="flex w-full items-center justify-center font-medium">Wed</div>
+      <div class="flex w-full items-center justify-center font-medium">Thu</div>
+      <div class="flex w-full items-center justify-center font-medium">Fri</div>
+      <div class="flex w-full items-center justify-center font-medium">Sat</div>
+      <div class="flex w-full items-center justify-center font-medium">Sun</div>
+      @for (item of date; track $index) {
+      <div class="flex w-full items-center justify-center">
+        <div
+          class="rounded-full flex items-center h-7 w-7 justify-center"
+          [ngClass]="[
+            item.status == 'inactive' ? 'text-gray-300' : 'text-gray-600',
+            item.isToday ? 'bg-blue-500 text-white' : ''
+          ]"
+        >
+          {{ item.date }}
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</section>
